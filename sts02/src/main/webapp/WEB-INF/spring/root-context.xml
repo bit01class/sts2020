@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
 	<bean id = "org.h2.tools.Server"
 	            class="org.h2.tools.Server"
 	            factory-method="createTcpServer"
@@ -10,10 +11,11 @@
 	            destroy-method="stop">
 	    <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,8043" />
 	</bean>
-	<!-- 
 	 -->
+	<!-- 
 	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
-		<property name="url" value="jdbc:h2:tcp://localhost/~/xe;AUTO_SERVER=TRUE"></property>
+	<property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=2"></property>
+		<property name="url" value="jdbc:h2:tcp://localhost/~/xe"></property>
 		<property name="user" value="sa"></property>
 		<property name="password" value=""></property>
 	</bean>
@@ -21,8 +23,39 @@
 	<bean id="jdbcConnectionPool" class="org.h2.jdbcx.JdbcConnectionPool">
 		<constructor-arg ref="dataSource"></constructor-arg>
 	</bean>
+	 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.h2.Driver"></property>
+		<property name="url" value="jdbc:h2:tcp://localhost/~/xe"></property>
+		<property name="username" value="sa"></property>
+		<property name="password" value=""></property>
+	</bean>
 	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 
 	<bean id="deptDao" class="com.bit.sts02.model.DeptDao1Impl">
-		<property name="jdbcConnectionPool" ref="jdbcConnectionPool"></property>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>	
+	 -->
+	<bean id="deptDao" class="com.bit.sts02.model.DeptDao2lmpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

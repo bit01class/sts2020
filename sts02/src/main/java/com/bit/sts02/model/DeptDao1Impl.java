@@ -9,16 +9,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bit.sts02.model.entity.DeptVo;
 
 public class DeptDao1Impl implements DeptDao {
-	JdbcConnectionPool jdbcConnectionPool;
+//	@Autowired
+//	jdbcConnectionPool jdbcConnectionPool;
+	DataSource dataSource;
 	
-	public void setJdbcConnectionPool(JdbcConnectionPool jdbcConnectionPool) {
-		this.jdbcConnectionPool = jdbcConnectionPool;
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 
 	@Override
@@ -26,8 +30,9 @@ public class DeptDao1Impl implements DeptDao {
 		
 		String sql="select * from dept";
 		List<DeptVo> list=new ArrayList<DeptVo>();
+		
 		try(
-				Connection conn = jdbcConnectionPool.getConnection();
+				Connection conn = dataSource.getConnection();
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				ResultSet rs=pstmt.executeQuery();
 		){
@@ -43,7 +48,7 @@ public class DeptDao1Impl implements DeptDao {
 	public void insertOne(DeptVo bean) throws SQLException {
 		String sql="insert into dept values (?,?,?)";
 		try(
-				Connection conn=jdbcConnectionPool.getConnection();
+				Connection conn=dataSource.getConnection();
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				){
 			pstmt.setInt(1, bean.getDeptno());
@@ -57,7 +62,7 @@ public class DeptDao1Impl implements DeptDao {
 	public DeptVo selectOne(int deptno) throws SQLException {
 		String sql="select * from dept where deptno=?";
 		try(
-				Connection conn=jdbcConnectionPool.getConnection();
+				Connection conn=dataSource.getConnection();
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				){
 			pstmt.setInt(1, deptno);
@@ -74,7 +79,7 @@ public class DeptDao1Impl implements DeptDao {
 	public int updateOne(DeptVo bean) throws SQLException {
 		String sql="update dept set dname=?, loc=? where deptno=?";
 		try(
-				Connection conn=jdbcConnectionPool.getConnection();
+				Connection conn=dataSource.getConnection();
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				){
 			pstmt.setString(1, bean.getDname());
@@ -88,7 +93,7 @@ public class DeptDao1Impl implements DeptDao {
 	public int deleteOne(int deptno) throws SQLException {
 		String sql="delete from dept where deptno=?";
 		try(
-				Connection conn=jdbcConnectionPool.getConnection();
+				Connection conn=dataSource.getConnection();
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				){
 			pstmt.setInt(1, deptno);

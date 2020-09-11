@@ -19,12 +19,8 @@ import com.bit.sts02.model.entity.DeptVo;
 @RequestMapping("/dept/")
 public class DeptController {
 	// Dept table CRUD
-	DeptDao deptDao;
-	
 	@Autowired
-	public void setDeptDao(DeptDao deptDao) {
-		this.deptDao = deptDao;
-	}
+	private DeptDao deptDao;
 	
 	@RequestMapping("list")
 	public String list(Model model) throws SQLException {
