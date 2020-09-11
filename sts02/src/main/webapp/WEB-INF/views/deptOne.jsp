@@ -12,6 +12,16 @@
 	src="${pageContext.request.contextPath }/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		if('${readonly}'){
+			$('form').submit(function(){
+				location.href='edit?deptno=${bean.deptno}';
+				return false;
+			});
+		}
+	});
+</script>
 </head>
 <body>
 <div class="navbar navbar-default" id="menu">
@@ -30,13 +40,13 @@
   </div>
 </div>
 <div class="jumbotron">
-  <h1>상세페이지!</h1>
+  <h1>${title1 }페이지!</h1>
 </div>
 <div class="container">
 	<div class="row" id="header">
 	  <div class="col-md-12">
 	  	<div class="page-header">
-		  <h1>DEPT DETAIL <small>DEPT Table</small></h1>
+		  <h1>DEPT ${title2 } <small>DEPT Table</small></h1>
 		</div>
 	  </div>
 	</div>
@@ -53,13 +63,13 @@
 		  <div class="form-group">
 		    <label for="dname" class="col-sm-2 control-label">dname</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" name="dname" id="dname" value="${bean.dname }" readonly/>
+		      <input type="text" class="form-control" name="dname" id="dname" value="${bean.dname }" ${readonly }/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="loc" class="col-sm-2 control-label">loc</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" name="loc" id="loc" value="${bean.loc }" readonly/>
+		      <input type="text" class="form-control" name="loc" id="loc" value="${bean.loc }" ${readonly }/>
 		    </div>
 		  </div>
 		  <div class="form-group">
