@@ -12,7 +12,16 @@
 	<script type="text/javascript" 
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 	<script type="text/javascript">
-	
+	$(function(){
+		if( '${title}' =='Detail'){
+			$(':text').prop('readonly',true);
+		}else if( '${title}' == 'Add'){
+			$('form>.form-group').first().remove();
+			$(':submit').text('입 력');
+			$('form').removeAttr('action');
+		}
+		
+	});
 	</script>
 </head>
 <body>
@@ -48,37 +57,42 @@
 </nav>
 <div class="container">
 	<div class="row" id="header">
-		<div class="page-header">
-		  <h1>LIST PAGE <small>DEPT Table</small></h1>
+		<div class="col-md-12">
+			<div class="page-header">
+			  <h1>FORM PAGE <small>${title }</small></h1>
+			</div>
 		</div>
 	</div>
 	<div class="row" id="content">
 		<div class="col-md-12">
 			<!-- content start -->
-			<div class="col-md-12">
-				<div class="list-group">
-				  <span class="list-group-item active">
-				  	<span class="badge">deptno</span>
-				    <h4 class="list-group-item-heading">dname</h4>
-				    <p class="list-group-item-text">loc</p>
-				  </span>
-				  <c:forEach items="${list }" var="bean">
-				  <a href="${pageContext.request.contextPath }/dept/${bean.deptno}" class="list-group-item">
-				  	<span class="badge">${bean.deptno }</span>
-				    <h4 class="list-group-item-heading">${bean.dname }</h4>
-				    <p class="list-group-item-text">${bean.loc }</p>
-				  </a>
-				  </c:forEach>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-12">
-			<p class="text-center">
-				<a href="${pageContext.request.contextPath }/dept/add"
-						class="btn btn-primary btn-lg btn-block" role="btn" >입 력</a>
-			</p>
-		</div>
+			<form class="form-horizontal" method="post">
+			  <div class="form-group">
+			    <label for="deptno" class="col-sm-2 control-label">deptno</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="deptno" id="deptno" value="${bean.deptno }" placeholder="deptno">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="dname" class="col-sm-2 control-label">dname</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control"  name="dname" id="dname" value="${bean.dname }" placeholder="dname">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="loc" class="col-sm-2 control-label">loc</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control"  name="loc" id="loc" value="${bean.loc }" placeholder="loc">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-default">수 정</button>
+			    </div>
+			  </div>
+			</form>
 			<!-- content end -->
+		</div>
 	</div>
 	<div class="row" id="footer">
 		<div class="col-md-12">
