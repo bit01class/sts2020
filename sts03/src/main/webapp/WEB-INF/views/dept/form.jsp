@@ -15,6 +15,10 @@
 	$(function(){
 		if( '${title}' =='Detail'){
 			$(':text').prop('readonly',true);
+			$('form').one('submit',function(){
+				$(':text').filter('input:gt(0)').prop('readonly',false);
+				return false;
+			});
 		}else if( '${title}' == 'Add'){
 			$('form>.form-group').first().remove();
 			$(':submit').text('입 력');

@@ -70,7 +70,7 @@ public class Dept03DaoTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testSelectAll() throws SQLException {
 		assertSame(1, dept03Dao.selectAll().size());
 	}
 	
@@ -85,7 +85,7 @@ public class Dept03DaoTest {
 	}
 	
 	@Test
-	public void testSelectOne() {
+	public void testSelectOne() throws SQLException {
 		assertEquals(target, dept03Dao.selectOne(target.getDeptno()));
 	}
 	
