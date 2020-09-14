@@ -30,4 +30,26 @@ public class Dept03DaoImpl implements Dept03Dao {
 		String sql="select * from dept03 order by deptno";
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+	
+	public Dept03Vo selectOne(int deptno) {
+		String sql="select * from dept03 where deptno=?";
+		return jdbcTemplate.queryForObject(sql, rowMapper, deptno);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
