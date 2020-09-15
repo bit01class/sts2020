@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+${imgs }
 <%@ include file="template/menu.jspf" %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

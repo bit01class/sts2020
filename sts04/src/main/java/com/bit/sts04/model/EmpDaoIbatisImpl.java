@@ -27,7 +27,7 @@ public class EmpDaoIbatisImpl implements EmpDao {
 
 	@Override
 	public void insertOne(EmpVo bean) throws SQLException {
-
+		sqlMapClient.insert("insertOne",bean);
 	}
 
 	@Override
