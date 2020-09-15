@@ -12,10 +12,12 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 @Repository
 public class EmpDaoIbatisImpl implements EmpDao {
+	@Autowired
+	SqlMapClient sqlMapClient;
 	
 	@Override
 	public List<EmpVo> selectAll() throws SQLException {
-		return null;
+		return sqlMapClient.queryForList("selectAll");
 	}
 
 	@Override
