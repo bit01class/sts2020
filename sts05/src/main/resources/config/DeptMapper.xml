@@ -13,3 +13,4 @@
   		delete from dept03 where deptno=#{val}
   	</delete>
   </mapper>
+  
