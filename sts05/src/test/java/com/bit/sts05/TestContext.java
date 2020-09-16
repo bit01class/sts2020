@@ -52,9 +52,9 @@ public class TestContext {
 				target.put("dname", "tester");
 				target.put("loc","ÇÐ¿ø");
 				target.put("deptno",1234);
-				session.insert("dept.insertTest",target);
+				session.insert("test.insertTest",target);
 
-				Map<String, Object> map = session.selectOne("dept.selectDept",1234);
+				Map<String, Object> map = session.selectOne("test.selectDept",1234);
 //				Set<Entry<String, Object>> entrySet = map.entrySet();
 //				Iterator<Entry<String, Object>> ite = entrySet.iterator();
 //				while(ite.hasNext()) {
@@ -62,7 +62,7 @@ public class TestContext {
 //					log.debug(entry.getKey()+":"+entry.getValue());
 //				}
 
-				assertSame(1, session.delete("dept.deleteTest",1234));
+				assertSame(1, session.delete("test.deleteTest",1234));
 			}
 	}
 	
