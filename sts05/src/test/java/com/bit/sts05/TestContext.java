@@ -5,7 +5,9 @@ import static org.junit.Assert.assertSame;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -68,7 +70,20 @@ public class TestContext {
 		try (
 				SqlSession session=sqlSessionFactory.openSession();
 				){
-			session.selectList("dept.selectDept");
+			session.selectList("dept.selectDept",new DeptVo(0,"test1",null));
+		}
+	}
+	
+	@Test
+	public void testSelectEach() {
+		try(
+				SqlSession session = sqlSessionFactory.openSession();
+				){
+			List<Integer> list=new ArrayList<Integer>();
+			list.add(2);
+			list.add(4);
+			list.add(6);
+			session.selectList("dept.selectEach",list);
 		}
 	}
 	
