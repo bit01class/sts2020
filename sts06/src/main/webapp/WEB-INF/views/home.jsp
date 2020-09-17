@@ -42,6 +42,32 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<div class="container">
+	<div class="row">
+	  <div class="col-md-12" id="content">
+	  <!-- begin content -->
+	  
+	  <!-- end content -->
+	  </div>
+	  <div class="col-md-12" id="footer">
+	  	<address>비트캠프 서울시 서초구 강남대로 459 (서초동, 백암빌딩)</address>
+		Copyright &copy; 비트캠프 All rights reserved.
+	  </div>
+	</div>
+</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
