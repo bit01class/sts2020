@@ -18,6 +18,7 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void list(HttpServletRequest req) throws SQLException {
+		System.out.println("list(HttpServletRequest req)");
 		if(req.getParameter("page")==null)
 			req.setAttribute("list", empDao.selectAll());
 		else
@@ -28,18 +29,21 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void list(Model model) throws SQLException {
+		System.out.println("list(Model model)");
 		model.addAttribute("list", empDao.selectAll());
 		model.addAttribute("begin", 1);
 	}
 
 	@Override
 	public void list(Model model, int page) throws SQLException {
+		System.out.println("list(Model model, int page)");
 		model.addAttribute("list", empDao.selectAll(page));
 		model.addAttribute("begin", 1);
 	}
 
 	@Override
 	public void insert(EmpVo bean) throws SQLException {
+		System.out.println("insert(EmpVo bean)");
 		empDao.insertOne(bean);
 	}
 
