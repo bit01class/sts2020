@@ -30,5 +30,10 @@ public class EmpDaoImpl implements EmpDao {
 		return null;
 	}
 
+	@Override
+	public void insertOne(EmpVo bean) {
+		sqlSession.insert("emp.insertOne",bean);
+	}
+
 }
 
