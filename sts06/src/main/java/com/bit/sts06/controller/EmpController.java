@@ -1,5 +1,6 @@
 package com.bit.sts06.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,8 @@ public class EmpController {
 		return "emp/form";
 	}
 	@RequestMapping(value = "/add",method=RequestMethod.POST)
-	public String add(@ModelAttribute EmpVo bean) throws SQLException {
+	public String add(@ModelAttribute EmpVo bean,HttpServletRequest req) throws SQLException, UnsupportedEncodingException {
+		
 		empService.insert(bean);
 		return "redirect:./";
 	}

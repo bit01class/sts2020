@@ -23,16 +23,19 @@ public class EmpServiceImpl implements EmpService {
 		else
 			req.setAttribute("list"
 					, empDao.selectAll(Integer.parseInt(req.getParameter("page"))));
+		req.setAttribute("begin", 1);
 	}
 
 	@Override
 	public void list(Model model) throws SQLException {
 		model.addAttribute("list", empDao.selectAll());
+		model.addAttribute("begin", 1);
 	}
 
 	@Override
 	public void list(Model model, int page) throws SQLException {
 		model.addAttribute("list", empDao.selectAll(page));
+		model.addAttribute("begin", 1);
 	}
 
 	@Override
