@@ -29,4 +29,22 @@ public class DeptServiceImpl implements DeptService {
 		DeptDao dao=sqlSession.getMapper(DeptDao.class);
 		dao.insertOne(bean);
 	}
+
+	@Override
+	public void detailService(Model model, int deptno) throws SQLException {
+		DeptDao dao=sqlSession.getMapper(DeptDao.class);
+		model.addAttribute("bean",dao.selectOne(deptno));
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

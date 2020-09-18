@@ -9,4 +9,7 @@
   	<insert id="insertOne">
   		insert into dept03 (dname,loc) values (#{dname},#{loc})
   	</insert>
+  	<select id="selectOne" resultType="com.bit.sts07.model.entity.DeptVo">
+  		select * from dept03 where deptno=#{val}
+  	</select>
   </mapper>

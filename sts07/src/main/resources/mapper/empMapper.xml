@@ -6,7 +6,7 @@
   <mapper namespace="com.bit.sts07.model.EmpDao">
   
   	<select id="selectAll" resultType="com.bit.sts07.model.entity.EmpVo">
-  		select * from emp03 order by sabun desc
+  		select sabun,name,nalja,pay,(select dname from dept03 B where B.deptno=A.deptno) as dname from emp03 A order by sabun desc
   	</select>
   
   </mapper>

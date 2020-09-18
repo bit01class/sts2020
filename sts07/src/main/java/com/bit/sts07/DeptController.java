@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,6 +40,12 @@ public class DeptController {
 	}
 	@RequestMapping("/add")
 	public void add() {}
+	
+	@RequestMapping(value = "/{deptno}",method=RequestMethod.GET)
+	public String detail(@PathVariable int deptno,Model model) throws SQLException{
+		deptService.detailService(model,deptno);
+		return "dept/detail";
+	}
 }
 
 
