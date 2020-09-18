@@ -10,6 +10,12 @@
   		insert into dept03 (dname,loc) values (#{dname},#{loc})
   	</insert>
   	<select id="selectOne" resultType="com.bit.sts07.model.entity.DeptVo">
-  		select * from dept03 where deptno=#{val}
+  		select * from dept03 where deptno=#{deptno}
   	</select>
+  	<update id="updateOne">
+  		update dept03 set dname=#{dname},loc=#{loc} where deptno=#{deptno}
+  	</update>
+  	<delete id="deleteOne">
+  		delete from dept03 where deptno=#{deptno}
+  	</delete>
   </mapper>

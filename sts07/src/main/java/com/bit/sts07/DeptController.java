@@ -54,12 +54,13 @@ public class DeptController {
 		return "dept/edit";
 	}
 	@RequestMapping(value = "/{deptno}",method=RequestMethod.PUT)
-	public ModelAndView update(@PathVariable int deptno,@ModelAttribute DeptVo bean) {
-		
+	public ModelAndView update(@PathVariable int deptno,@ModelAttribute DeptVo bean) throws SQLException{
+		deptService.oneEditService(bean);
 		return new ModelAndView("redirect:./"+deptno);
 	}
 	@RequestMapping(value = "/{deptno}",method = RequestMethod.DELETE)
-	public String delete(@PathVariable int deptno) {
+	public String delete(@PathVariable int deptno) throws SQLException{
+		deptService.oneDelService(deptno);
 		return "redirect:./";
 	}
 }
