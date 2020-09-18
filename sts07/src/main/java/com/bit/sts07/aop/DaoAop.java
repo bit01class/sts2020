@@ -9,20 +9,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
-@Aspect
+//@Repository
+//@Aspect
 public class DaoAop {
 	Logger log=LoggerFactory.getLogger(this.getClass());
 
-	@Before("execution(* com.bit.sts07.service.*Impl.*(..))")
+	//@Before("execution(* com.bit.sts07.service.*Impl.*(..))")
 	public void before() {
 		log.debug("before dao...");
 	}
-	@AfterReturning("execution(* com.bit.sts07.service.*Impl.list*(..))")
+	//@AfterReturning("execution(* com.bit.sts07.service.*Impl.list*(..))")
 	public void afterReturn() {
 		log.debug("after success...");
 	}
-	@AfterThrowing("execution(* com.bit.sts07.service.*Impl.one*(..))")
+	//@AfterThrowing("execution(* com.bit.sts07.service.*Impl.one*(..))")
 	public void afterThrow() {
 		log.debug("after err...");
 	}
