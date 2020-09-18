@@ -6,10 +6,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.sts07.model.entity.DeptVo;
 import com.bit.sts07.service.DeptService;
@@ -45,6 +47,20 @@ public class DeptController {
 	public String detail(@PathVariable int deptno,Model model) throws SQLException{
 		deptService.detailService(model,deptno);
 		return "dept/detail";
+	}
+	@RequestMapping("/{deptno}/edit")
+	public String edit(@PathVariable int deptno,Model model) throws SQLException{
+		deptService.detailService(model, deptno);
+		return "dept/edit";
+	}
+	@RequestMapping(value = "/{deptno}",method=RequestMethod.PUT)
+	public ModelAndView update(@PathVariable int deptno,@ModelAttribute DeptVo bean) {
+		
+		return new ModelAndView("redirect:./"+deptno);
+	}
+	@RequestMapping(value = "/{deptno}",method = RequestMethod.DELETE)
+	public String delete(@PathVariable int deptno) {
+		return "redirect:./";
 	}
 }
 
