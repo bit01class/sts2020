@@ -6,4 +6,7 @@
   	<select id="selectAll" resultType="com.bit.sts07.model.entity.DeptVo">
   		select * from dept03
   	</select>
+  	<insert id="insertOne">
+  		insert into dept03 (dname,loc) values (#{dname},#{loc})
+  	</insert>
   </mapper>

@@ -30,7 +30,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-
+<p><a href="./add" class="btn btn-primary btn-block" role="btn">입 력</a></p>
 <%@ include file="../template/footer.jspf" %>
 </body>
 </html>

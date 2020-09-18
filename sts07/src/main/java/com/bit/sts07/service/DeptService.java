@@ -4,8 +4,12 @@ import java.sql.SQLException;
 
 import org.springframework.ui.Model;
 
+import com.bit.sts07.model.entity.DeptVo;
+
 public interface DeptService {
 
 	void listService(Model model) throws SQLException;
+
+	void oneAddService(DeptVo bean) throws SQLException;
 
 }
