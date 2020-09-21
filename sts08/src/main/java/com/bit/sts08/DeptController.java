@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.swing.text.AbstractDocument.Content;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,21 +25,22 @@ public class DeptController {
 	@Inject
 	DeptService deptService;
 
-	@RequestMapping(value = "/dept/",method=RequestMethod.GET, produces = {"application/json; charset=utf-8"})
+	@RequestMapping(value = "/dept/",method=RequestMethod.GET
+			, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public Map listPage(Model model) {
+	public Map<String,Object> listPage() {
 		try {
-			deptService.list(model);
+			return deptService.list();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Map map=new HashMap();
-		List list = new ArrayList();
-		map.put("root", list);
-		list.add(new DeptVo());
-		list.add(new DeptVo());
-		list.add(new DeptVo());
-		return map;
+		return null;
+	}
+	
+	@RequestMapping(value = "/dept/{deptno}")
+	@ResponseBody
+	public DeptVo detailPage(@PathVariable int deptno) throws Exception {
+		return deptService.getOne(deptno);
 	}
 }
 
