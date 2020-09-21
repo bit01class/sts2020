@@ -8,6 +8,46 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css"/>
 	<script type="text/javascript" src="resources/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="resources/js/bootstrap.js"></script>
+	<script type="text/javascript">
+	
+	$(function(){
+		$('nav a').eq(0).click(function(){
+			console.log("logo");
+			return false;
+		});
+		$('nav a').eq(1).click(function(){
+			console.log("home");
+			return false;
+		});
+		$('nav a').eq(2).click(function(){
+			console.log('login');
+			return false;
+		});
+		$('.dropdown-menu a').click(function(){
+			console.log($(this).text());
+			if($(this).text()=='dept'){
+				listPage();
+			}
+			return false;
+		});
+		
+		
+	});
+	
+	function listPage(){
+		$('.jumbotron').before('<div><h2 class="page-header">DEPT LIST</h2></div>').hide();
+		$('.jumbotron').after('<div id="content"></div>');
+		$('#content').html('<table class="table"><thead><tr><th>deptno</th><th>dname</th><th>loc</th></tr></thead><tbody></tbody></table>');
+		$.getJSON('dept/',function(data){
+			var array=data.root;
+			console.log(array);
+			for(var i=0; i<array.length; i++)
+			$('#content table tbody').append('<tr><td>'+array[i].deptno
+					+'</td><td>'+array[i].dname+'</td><td>'+array[i].loc+'</td></tr>');
+		});
+		
+	}
+	</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -55,24 +95,7 @@
 	<h1>Hello world!  </h1>
 	<P>  The time on the server is ${serverTime}. </P>
 </div>
-<table class="table">
-	<thead>
-		<tr>
-			<th>deptno</th>
-			<th>dname</th>
-			<th>loc</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${list }" var="bean">
-		<tr>
-			<td>${bean.deptno }</td>
-			<td>${bean.dname }</td>
-			<td>${bean.loc }</td>
-		</tr>
-		</c:forEach>
-	</tbody>
-</table>
+
 
 </body>
 </html>

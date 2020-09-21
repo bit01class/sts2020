@@ -23,6 +23,6 @@ public class DeptController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "home";
+		return "listJson";
 	}
 }
