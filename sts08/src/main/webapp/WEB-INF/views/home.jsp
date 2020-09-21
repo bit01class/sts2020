@@ -66,7 +66,37 @@
 
 			$('#myModal form .form-group input').prop('readonly',true);
 			$('#myModal').modal();
-			
+			$('#myModal .modal-footer button').eq(1).click(function(){
+				console.log(this);
+				$('#myModal form .form-group input').eq(1).prop('readonly',false);
+				$('#myModal form .form-group input').eq(2).prop('readonly',false);
+				$(this).off('click');
+				$(this).click(function(){
+					deptEdit();
+				});
+			});
+		});
+	}
+	function deptEdit(){
+		var params={
+				'deptno':$('#deptno').val()
+				,'dname':$('#dname').val()
+				,'loc':$('#loc').val()
+		};
+		console.log('update',params);
+		$.ajax({
+			url:'dept/',
+			method:'put',
+			data: JSON.stringify(params),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success:function(data){
+				console.log('update success...');
+				$('.jumbotron').prev().remove();
+				$('.jumbotron').next().remove();
+				listPage();
+				$('#myModal').modal('hide');
+			}
 		});
 	}
 	</script>
@@ -102,11 +132,11 @@
       <form class="navbar-form navbar-right">
         <div class="form-group">
           <label for="sabun">sabun</label>
-          <input type="text" class="form-control" id="sabun" placeholder="sabun">
+          <input type="text" class="form-control" placeholder="sabun">
         </div>
         <div class="form-group">
           <label for="deptno">deptno</label>
-          <input type="text" class="form-control" id="deptno" placeholder="deptno">
+          <input type="text" class="form-control" placeholder="deptno">
         </div>
         <button type="submit" class="btn btn-default">LOGIN</button>
       </form>
@@ -130,19 +160,19 @@
 		<div class="form-group">
 		    <label for="deptno" class="col-sm-2 control-label">deptno</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="deptno" placeholder="deptno">
+		      <input type="text" class="form-control" name="deptno" id="deptno" placeholder="deptno">
 		    </div>
 		</div>
 		<div class="form-group">
 		    <label for="dname" class="col-sm-2 control-label">dname</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="dname" placeholder="dname">
+		      <input type="text" class="form-control" name="dname" id="dname" placeholder="dname">
 		    </div>
 		</div>
 		<div class="form-group">
 		    <label for="loc" class="col-sm-2 control-label">loc</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="loc" placeholder="loc">
+		      <input type="text" class="form-control" name="loc" id="loc" placeholder="loc">
 		    </div>
 		</div>
 		

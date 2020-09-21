@@ -37,6 +37,11 @@ public class DeptServiceImpl implements DeptService {
 		return sqlSession.getMapper(DeptDao.class).selectOne(deptno);
 	}
 
+	@Override
+	public void updateOne(DeptVo bean) throws SQLException {
+		sqlSession.getMapper(DeptDao.class).updateOne(bean);
+	}
+
 }
 
 

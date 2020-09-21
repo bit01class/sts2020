@@ -15,4 +15,6 @@ public interface DeptService {
 
 	DeptVo getOne(int deptno) throws SQLException;
 
+	void updateOne(DeptVo bean) throws SQLException;
+
 }
