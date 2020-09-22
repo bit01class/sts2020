@@ -26,7 +26,11 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/emp/**"/>
-			<beans:bean class="com.bit.sts10.LoginInterceptor"/>
+			<beans:bean class="com.bit.sts10.EmpInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/dept/**"/>
+			<beans:bean class="com.bit.sts10.DeptInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
