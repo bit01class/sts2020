@@ -9,4 +9,5 @@ public interface DeptService {
 
 	List<DeptVo> list() throws SQLException;
 
+	DeptVo detail(int key) throws SQLException;
 }

@@ -11,4 +11,7 @@ public interface DeptDao {
 
 	@Select("select * from dept03")
 	List<DeptVo> selectAll() throws SQLException;
+	
+	@Select("select * from dept03 where deptno=#{deptno}")
+	DeptVo selectOne(int deptno) throws SQLException;
 }
