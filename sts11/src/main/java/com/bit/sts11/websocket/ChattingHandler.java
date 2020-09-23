@@ -17,8 +17,9 @@ public class ChattingHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		session.sendMessage(new TextMessage(session.getId()+"¥‘ ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ"));
-		map.put(session.getId(), session);
+		session.sendMessage(new TextMessage(session.getAttributes().get("id")+"¥‘ ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ"));
+		map.put(session.getAttributes().get("id").toString(), session);
+		System.out.println(session.getAttributes().get("id"));
 	}
 	
 	@Override
@@ -26,14 +27,24 @@ public class ChattingHandler extends TextWebSocketHandler {
 		System.out.println(message.getPayload());
 		Set<Entry<String, WebSocketSession>> entrys = map.entrySet();
 		Iterator<Entry<String, WebSocketSession>> ite = entrys.iterator();
-		while(ite.hasNext()) {
-			Entry<String, WebSocketSession> entry = ite.next();
-			entry.getValue().sendMessage(new TextMessage(session.getId()+">>"+message.getPayload()));			
+		if(message.getPayload().startsWith("@")) {
+			String msg=message.getPayload().substring(9);
+			while(ite.hasNext()) {
+				Entry<String, WebSocketSession> entry = ite.next();
+				if(entry.getKey().equals(message.getPayload().substring(1,9))) {
+					entry.getValue().sendMessage(new TextMessage(session.getAttributes().get("id")+">>"+msg));
+				}			
+			}
+		}else {
+			while(ite.hasNext()) {
+				Entry<String, WebSocketSession> entry = ite.next();
+				entry.getValue().sendMessage(new TextMessage(session.getAttributes().get("id")+">>"+message.getPayload()));			
+			}
 		}
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		map.remove(session.getId());
+		map.remove(session.getAttributes().get("id").toString());
 	}
 }

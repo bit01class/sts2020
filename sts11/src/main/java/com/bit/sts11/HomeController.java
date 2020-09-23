@@ -15,6 +15,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,String id) {
+		logger.info(session.getId());
 		session.setAttribute("id", id);
 		return "home";
 	}
